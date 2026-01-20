@@ -9,5 +9,5 @@ public class ProductResponse {
     private Integer quantity;
     private Double price;
     private String description;
-    private Long serviceId;
+    private Long categoryId;
 }
