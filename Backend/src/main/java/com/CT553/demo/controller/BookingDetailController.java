@@ -36,4 +36,9 @@ public class BookingDetailController {
     public List<BookingDetailResponse> getByCourtId(@PathVariable Long courtId){
         return bookingDetailService.getByCourtId(courtId);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteProductDetail(@PathVariable Long id) {
+         bookingDetailService.deleteBookingDetail(id);
+    }
 }

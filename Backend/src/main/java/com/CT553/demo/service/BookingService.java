@@ -74,7 +74,7 @@ public class BookingService {
                 detailAmount += bpReq.getQuantity()*product.getPrice();
                 System.out.println("tiền của từng sp "+ detailAmount);
                 // cập nhật số lượng bên product trong kho
-                product.setQuantity(product.getQuantity() - bpReq.getQuantity());
+                product.setStock(product.getStock() - bpReq.getQuantity());
 
                 bookingProducts.add(bp);
             }
