@@ -19,6 +19,6 @@ public class CategoryService {
     @JoinColumn(name = "sportCenter_id")
     private SportCenter sportCenter;
 
-    @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> products;
 }

@@ -18,8 +18,8 @@ public class Product {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "service_id")
-    private CategoryService service;
+    @JoinColumn(name = "category_id")
+    private CategoryService category;
 
 //    @ManyToOne
 //    @JoinColumn(name = "bookingDetail_id")
