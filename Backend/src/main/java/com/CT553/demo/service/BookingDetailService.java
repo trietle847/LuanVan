@@ -56,6 +56,21 @@ public class BookingDetailService {
         return bookingDetailMapper.toResponse(bookingDetailRepository.save(bookingDetail));
     }
 
+    public List<BookingDetailResponse> getAllBookingDetail() {
+        return bookingDetailRepository.findAll()
+                .stream()
+                .map(bookingDetailMapper::toResponse)
+                .toList();
+    }
+
+    public List<BookingDetailResponse> getByCourtId(Long courtId) {
+        List<BookingDetail>  bookingDetails = bookingDetailRepository.findByCourt_Id(courtId);
+        return bookingDetails
+                .stream()
+                .map(bookingDetailMapper::toResponse)
+                .toList();
+    }
+
     public BookingDetailResponse updateBookingDetail(Long id, BookingDetailRequest request) {
         BookingDetail bookingDetail = bookingDetailRepository.findById(id)
                 .orElseThrow(() -> new ApiException(BAD_REQUEST,"bookingDetail not found"));
