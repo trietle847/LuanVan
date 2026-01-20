@@ -3,15 +3,19 @@ package com.CT553.demo.service;
 import com.CT553.demo.dto.request.BookingDetailRequest;
 import com.CT553.demo.dto.request.BookingProductRequest;
 import com.CT553.demo.dto.response.BookingDetailResponse;
+import com.CT553.demo.dto.response.ProductResponse;
 import com.CT553.demo.entity.BookingDetail;
 import com.CT553.demo.entity.BookingProduct;
 import com.CT553.demo.entity.Court;
+import com.CT553.demo.entity.Product;
 import com.CT553.demo.exception.ApiException;
 import com.CT553.demo.mapper.BookingDetailMapper;
 import com.CT553.demo.mapper.BookingProductMapper;
+import com.CT553.demo.mapper.ProductMapper;
 import com.CT553.demo.repository.BookingDetailRepository;
 import com.CT553.demo.repository.CourtRepository;
 import com.CT553.demo.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +32,7 @@ public class BookingDetailService {
     private final BookingProductMapper bookingProductMapper;
     private final CourtRepository courtRepsitory;
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
     public BookingDetailResponse createBookingDetail(BookingDetailRequest request) {
         BookingDetail bookingDetail = bookingDetailMapper.toEntity(request);
@@ -122,5 +127,17 @@ public class BookingDetailService {
             }
         }
         return bookingDetailMapper.toResponse(bookingDetailRepository.save(bookingDetail));
+    }
+
+    @Transactional
+    public void deleteBookingDetail(Long bookingDetailId) {
+        BookingDetail bookingDetail = bookingDetailRepository.findById(bookingDetailId)
+                .orElseThrow(() -> new ApiException(BAD_REQUEST,"BookingDetail not found"));
+        for (BookingProduct bp: bookingDetail.getBookingProducts()) {
+            Product p = bp.getProduct();
+            p.setStock(p.getStock() + bp.getQuantity());
+            productRepository.save(p);
+        }
+        bookingDetailRepository.delete(bookingDetail);
     }
 }
