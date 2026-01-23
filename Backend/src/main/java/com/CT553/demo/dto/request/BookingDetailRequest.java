@@ -10,8 +10,8 @@ import java.util.List;
 public class BookingDetailRequest {
     private Date date;
     private Long courtId;
+    private Long userId;
     private LocalTime start;
     private LocalTime end;
-//    private List<Long> slotTimes;
     private List<BookingProductRequest> products;
 }
