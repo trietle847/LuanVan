@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -16,12 +17,12 @@ public class PriceConfig {
     private Long id;
 
     private Integer days;
-    private Time startTime;
-    private Time endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Double price;
     private Boolean isPeak;
 
     @ManyToOne
-    @JoinColumn(name = "typeCourt_id")
+    @JoinColumn(name = "type_Court_id")
     private TypeCourt typeCourt;
 }

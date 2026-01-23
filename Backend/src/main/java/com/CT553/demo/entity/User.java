@@ -40,5 +40,5 @@ public class User {
     private List<SportCenter> sportCenters;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+    private List<BookingDetail> bookingDetails;
 }
