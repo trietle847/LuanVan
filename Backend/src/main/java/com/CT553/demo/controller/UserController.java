@@ -38,8 +38,8 @@ public class UserController {
         return userService.getMe();
     }
 
-//    @PutMapping("/{id}")
-//    public UserResponse updateUser(@PathVariable Long id, @RequestBody UserRequest request) {
-//        return userService.updateUser(id,request);
-//    }
+    @PutMapping("/{id}")
+    public UserResponse updateUser(@PathVariable Long id, @RequestBody UserRequest request) {
+        return userService.updateUser(id,request);
+    }
 }

@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface BookingDetailRepository extends JpaRepository<BookingDetail, Long> {
     List<BookingDetail> findByCourt_Id(Long courtId);
+    List<BookingDetail> findByUserId(Long userId);
 }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PriceConfigRepsitory extends JpaRepository<PriceConfig, Long> {
-    List<PriceConfig> findByTypeCourt_Id(Long typeCourtId);
+    List<PriceConfig> findByTypeCourtId(Long typeCourtId);
 }
