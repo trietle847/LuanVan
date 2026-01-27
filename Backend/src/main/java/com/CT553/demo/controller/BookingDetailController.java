@@ -18,7 +18,10 @@ public class BookingDetailController {
     private BookingDetailService bookingDetailService;
 
     @PostMapping
-    public List<BookingDetailResponse> createBookingDetail(@RequestBody List<BookingDetailRequest> request) {
+//    public List<BookingDetailResponse> createBookingDetail(@RequestBody List<BookingDetailRequest> request) {
+//        return bookingDetailService.createBookingDetail(request);
+//    }
+    public BookingDetailResponse createBookingDetail(@RequestBody BookingDetailRequest request) {
         return bookingDetailService.createBookingDetail(request);
     }
 

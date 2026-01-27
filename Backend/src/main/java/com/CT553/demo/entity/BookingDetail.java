@@ -20,8 +20,13 @@ public class BookingDetail {
     private LocalTime start;
     private LocalTime end;
     private Date createAt;
-    private Double totalAmount;
+//    private Double totalAmount;
+    private Double feeCourt;
+    private Double feeService;
     private BookingStatus status;
+    
+    private String guestName;
+    private String guestPhone;
 
     @ManyToOne
     @JoinColumn(name = "court_id")
@@ -36,6 +41,6 @@ public class BookingDetail {
 //    private Booking booking;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 }

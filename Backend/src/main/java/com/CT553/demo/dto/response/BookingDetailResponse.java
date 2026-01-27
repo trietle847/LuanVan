@@ -17,8 +17,12 @@ public class BookingDetailResponse {
     private LocalTime start;
     private LocalTime end;
     private Date createAt;
-    private Double totalAmount;
+//    private Double totalAmount;
+    private Double feeCourt;
+    private Double feeService;
     private BookingStatus status;
+    private String guestName;
+    private String guestPhone;
 //    private List<Long> slotTimes;
     private List<BookingProductResponse> products;
 }

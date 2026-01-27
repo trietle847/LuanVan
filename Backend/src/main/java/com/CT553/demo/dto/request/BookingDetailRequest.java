@@ -13,5 +13,7 @@ public class BookingDetailRequest {
     private Long userId;
     private LocalTime start;
     private LocalTime end;
+    private String guestName;
+    private String guestPhone;
     private List<BookingProductRequest> products;
 }

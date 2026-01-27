@@ -14,21 +14,21 @@ public interface BookingDetailMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "court", ignore = true)
-    @Mapping(target = "user", ignore = true)
+//    @Mapping(target = "user", ignore = true)
     @Mapping(target = "bookingProducts", ignore = true)
     BookingDetail toEntity(BookingDetailRequest request);
 
     @Mapping(source = "court.id", target = "courtId")
-    @Mapping(source = "user.id", target = "userId")
+//    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "bookingProducts", target = "products")
     @Mapping(source = "createAt", target = "createAt")
-    @Mapping(source = "totalAmount", target = "totalAmount")
+//    @Mapping(source = "totalAmount", target = "totalAmount")
     @Mapping(source = "status", target = "status")
     BookingDetailResponse toResponse(BookingDetail entity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "court", ignore = true)
-    @Mapping(target = "user", ignore = true)
+//    @Mapping(target = "user", ignore = true)
     @Mapping(target = "bookingProducts", ignore = true)
     void updateEntityFromRequest(BookingDetailRequest request, @MappingTarget BookingDetail entity);
 }
