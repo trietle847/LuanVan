@@ -27,7 +27,7 @@ public class PriceConfigService {
     }
 
     public List<PriceConfigResponse> getAllPriceByTypeId(Long typeId) {
-        List<PriceConfig> priceConfigs = priceConfigRepsitory.findByTypeCourt_Id(typeId);
+        List<PriceConfig> priceConfigs = priceConfigRepsitory.findByTypeCourtId(typeId);
 
         return priceConfigMapper.toResponse(priceConfigs);
     }

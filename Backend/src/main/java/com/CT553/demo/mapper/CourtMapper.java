@@ -5,7 +5,7 @@ import com.CT553.demo.dto.response.CourtResponse;
 import com.CT553.demo.entity.Court;
 import org.mapstruct.*;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",uses = ImageMapper.class)
 public interface CourtMapper {
     @Mapping(source = "sportCenterId", target = "sportCenter.id")
     @Mapping(source = "typeCourtId", target = "typeCourt.id")

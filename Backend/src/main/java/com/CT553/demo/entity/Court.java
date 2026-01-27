@@ -29,4 +29,7 @@ public class Court {
 
     @OneToMany(mappedBy = "court", fetch = FetchType.LAZY)
     private List<BookingDetail> bookingDetails;
+
+    @OneToMany(mappedBy = "court", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
 }
