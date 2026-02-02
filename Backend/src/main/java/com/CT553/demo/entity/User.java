@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,9 @@ public class User {
     private AuthProvider provider;
     private String providerId;
     private Boolean enabled;
+    @Enumerated(EnumType.STRING)
     private Role role;
+    private Date createAt;
 
     @OneToMany(
             mappedBy = "user",

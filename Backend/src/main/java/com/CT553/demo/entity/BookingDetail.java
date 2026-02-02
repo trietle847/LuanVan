@@ -35,12 +35,11 @@ public class BookingDetail {
     @OneToMany(mappedBy = "bookingDetail", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<BookingProduct> bookingProducts;
 
-//    @ManyToOne
-//    @JoinColumn(name = "booking_id")
-//    @JsonIgnore
-//    private Booking booking;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "invoice_id")
+    private Invoice invoice;
 }
