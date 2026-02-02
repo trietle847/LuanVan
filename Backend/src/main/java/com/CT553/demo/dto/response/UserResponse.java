@@ -4,6 +4,8 @@ import com.CT553.demo.entity.enums.AuthProvider;
 import com.CT553.demo.entity.enums.Role;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserResponse {
     private Long id;
@@ -16,4 +18,5 @@ public class UserResponse {
     private String providerId;
     private Boolean enabled;
     private Role role;
+    private Date createAt;
 }
