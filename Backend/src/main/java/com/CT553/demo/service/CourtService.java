@@ -2,11 +2,14 @@ package com.CT553.demo.service;
 
 import com.CT553.demo.dto.request.CourtRequest;
 import com.CT553.demo.dto.response.CourtResponse;
+import com.CT553.demo.dto.response.ProductResponse;
 import com.CT553.demo.entity.Court;
 import com.CT553.demo.exception.ApiException;
 import com.CT553.demo.mapper.CourtMapper;
 import com.CT553.demo.repository.CourtRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,11 +29,19 @@ public class CourtService {
         return courtMapper.toResponse(courtRepsitory.save(court));
     }
 
-    public List<CourtResponse> getAllCourt() {
-        return courtRepsitory.findAll()
-                .stream()
-                .map(courtMapper::toResponse)
-                .toList();
+//    public List<CourtResponse> getAllCourt() {
+//        return courtRepsitory.findAll()
+//                .stream()
+//                .map(courtMapper::toResponse)
+//                .toList();
+//    }
+
+    public Page<CourtResponse> getAllProduct(
+            Long typeCourtId,
+            String keyword,
+            Pageable pageable
+    ) {
+        return courtRepsitory.search(typeCourtId, keyword, pageable).map(courtMapper::toResponse);
     }
 
     public CourtResponse updateCourt(Long id, CourtRequest request) {

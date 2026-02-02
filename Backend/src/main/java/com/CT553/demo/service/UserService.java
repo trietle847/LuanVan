@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,12 +34,21 @@ public class UserService {
             throw new ApiException(BAD_REQUEST, "Email already exists");
         }
 
+//        if (userRepository.existsByPhone(request.getPhone())) {
+//            throw new ApiException(BAD_REQUEST, "Phone already exists");
+//        }
+
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new ApiException(BAD_REQUEST, "Username already exists");
+        }
+
         AuthProvider provider = request.getProvider();
 
         User user = userMapper.toEntity(request);
         user.setProvider(provider);
         user.setEnabled(true);
         user.setRole(USER);
+        user.setCreateAt(new Date());
 
 //        if (provider == AuthProvider.LOCAL) {
 //            if (request.getPassword() == null || request.getPassword().isBlank()) {
