@@ -33,14 +33,13 @@ class ApiClient {
 
   async getAll(queryParams?: Record<string, any>) {
     try {
-      console.log(queryParams);
       return (await this.api.get("", { params: queryParams })).data;
     } catch (error: any) {
       throw new Error(`${error.response.data.message}`);
     }
   }
 
-  async getById(id: string) {
+  async getById(id: number) {
     try {
       return (await this.api.get(`/${id}`)).data;
     } catch (error: any) {

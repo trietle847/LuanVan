@@ -19,6 +19,8 @@ import { useNavigate, NavLink } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const { user, isAuthenticated, openAuth, logout } = useAuth();
+    console.log(user);
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -26,13 +28,14 @@ const Header = () => {
   };
 
   const handleMenuClose = () => {
+    navigate("/me");
     setAnchorEl(null);
   };
 
   const navItems = [
     { label: "Trang chủ", path: "/" },
     { label: "Sân", path: "/court" },
-    { label: "Lịch", path: "/schedule"},
+    { label: "Lịch", path: "/schedule" },
     { label: "Dịch vụ", path: "/service" },
   ];
 
@@ -43,7 +46,7 @@ const Header = () => {
       sx={{
         bgcolor: "background.paper",
         borderBottom: "1px solid #ccc",
-        boxShadow: 1
+        boxShadow: 1,
       }}
     >
       <Toolbar sx={{ maxWidth: 1280, width: "100%", mx: "auto" }}>
@@ -59,12 +62,19 @@ const Header = () => {
         >
           <SportsSoccerIcon sx={{ color: "primary.main", mr: 1 }} />
           <Typography variant="h6" fontWeight={800}>
-            SportCenter
+            SportCTU
           </Typography>
         </Box>
 
         {/* Nav */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, flexGrow: 1, justifyContent: "center" }}>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            gap: 3,
+            flexGrow: 1,
+            justifyContent: "center",
+          }}
+        >
           {navItems.map((item) => (
             <Button
               key={item.path}
@@ -81,6 +91,16 @@ const Header = () => {
               {item.label}
             </Button>
           ))}
+          {(user?.role === "ADMIN" || user?.role === "STAFF") && (
+            <Button
+              color="inherit"
+              sx={{ fontWeight: 600 }}
+              component={NavLink}
+              to={"/dashboard"}
+            >
+              Quản lý
+            </Button>
+          )}
         </Box>
 
         {/* Right actions */}
@@ -97,7 +117,7 @@ const Header = () => {
           ) : (
             <>
               <Button
-                sx={{ ml: 2, textTransform: "none", border: 1}}
+                sx={{ ml: 2, textTransform: "none", border: 1 }}
                 onClick={handleMenuOpen}
                 startIcon={
                   <Avatar sx={{ width: 28, height: 28 }}>
@@ -119,7 +139,6 @@ const Header = () => {
                 <MenuItem
                   onClick={() => {
                     logout();
-                    handleMenuClose();
                   }}
                 >
                   Đăng xuất

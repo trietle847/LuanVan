@@ -68,7 +68,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
 
-      {/* Modal đặt ở đây → dùng toàn app */}
       <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
     </AuthContext.Provider>
   );
