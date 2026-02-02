@@ -2,8 +2,13 @@ package com.CT553.demo.controller;
 
 import com.CT553.demo.dto.request.CourtRequest;
 import com.CT553.demo.dto.response.CourtResponse;
+import com.CT553.demo.dto.response.ProductResponse;
 import com.CT553.demo.service.CourtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +27,14 @@ public class CourtController {
     }
 
     @GetMapping
-    public List<CourtResponse> getAllCourt() {
-        return courtService.getAllCourt();
+    public Page<CourtResponse> getAllProduct(
+            @RequestParam(required = false) Long typeCourtId,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        return courtService.getAllProduct(typeCourtId, keyword, pageable);
     }
 
     @GetMapping("/{id}")
