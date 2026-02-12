@@ -6,11 +6,13 @@ public final class SecurityEndpoints {
     public static final String[] PUBLIC_POST_ENDPOINTS = {
             "/auth/login",
             "/user",
-
     };
 
     public static final String[] PUBLIC_GET_ENDPOINTS = {
-            "/user/**"
+            "/user/**",
+            "/type/**",
+            "/court/**",
+            "/product/**"
     };
 
     public static final String[] ADMIN_ENDPOINTS = {

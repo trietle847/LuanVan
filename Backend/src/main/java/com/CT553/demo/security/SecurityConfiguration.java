@@ -56,13 +56,8 @@ public class SecurityConfiguration {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(
-//                                "/auth/**",
-//                                "/public/**",
-//                                "/swagger-ui/**",
-//                                "/v3/api-docs/**"
-//                        ).permitAll()
-                        .requestMatchers(HttpMethod.POST,SecurityEndpoints.PUBLIC_POST_ENDPOINTS).permitAll()                        .requestMatchers(HttpMethod.POST,SecurityEndpoints.PUBLIC_POST_ENDPOINTS).permitAll()
+                        .requestMatchers(HttpMethod.POST,SecurityEndpoints.PUBLIC_POST_ENDPOINTS).permitAll()
+                                .requestMatchers(HttpMethod.GET,SecurityEndpoints.PUBLIC_GET_ENDPOINTS).permitAll()
 
 
 //                        .authorizeHttpRequests(auth -> auth
