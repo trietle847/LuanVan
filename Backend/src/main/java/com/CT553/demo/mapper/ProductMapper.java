@@ -6,13 +6,15 @@ import com.CT553.demo.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ProductMapper {
     @Mapping(source = "categoryId", target = "category.id")
     Product toEntity(ProductRequest request);
 
     @Mapping(source = "category.id", target = "categoryId")
+    @Mapping(source = "category.name", target = "nameCategory")
     ProductResponse toResponse(Product product);
 
     @Mapping(source = "categoryId", target = "category.id")
