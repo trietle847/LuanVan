@@ -83,7 +83,7 @@ export default function DashboardPOS() {
       setCategories(categoryRes);
       setTypeCourt(typeCourtRes);
       setProducts(productRes.content);
-      setCourts(courtRes);
+      setCourts(courtRes.content);
     };
     fetchData();
   }, []);

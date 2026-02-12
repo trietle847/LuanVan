@@ -25,7 +25,7 @@ const menu = [
   { label: "Dashboard", path: "/dashboard", icon: <Dashboard /> },
   { label: "Quản lý sân", path: "/dashboard/courts", icon: <SportsSoccer /> },
   { label: "Lịch đặt", path: "/dashboard/bookings", icon: <Event /> },
-  { label: "Đơn hàng", path: "/dashboard/orders", icon: <ShoppingCart /> },
+  { label: "Sản phẩm", path: "/dashboard/products", icon: <ShoppingCart /> },
   { label: "Báo cáo", path: "/dashboard/reports", icon: <Assessment /> },
 ];
 

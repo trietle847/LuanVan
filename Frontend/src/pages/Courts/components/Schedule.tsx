@@ -82,14 +82,14 @@ export default function CourtWeeklySchedule({ onSelectRanges }: Props) {
     const clickedStart = info.date;
     const clickedEnd = new Date(clickedStart.getTime() + 30 * 60000); // 30 phút
 
-    if (clickedEnd < new Date()) return  
+    if (clickedEnd < new Date()) return;
     const isConflict = bookedEvents.some((e) => {
-      const start = new Date(e.start)
-      const end = new Date(e.end)
-      return clickedStart < end && clickedEnd > start
-    })
+      const start = new Date(e.start);
+      const end = new Date(e.end);
+      return clickedStart < end && clickedEnd > start;
+    });
 
-    if (isConflict) return 
+    if (isConflict) return;
     console.log(
       "Click slot:",
       clickedStart.toISOString(),
@@ -148,7 +148,6 @@ export default function CourtWeeklySchedule({ onSelectRanges }: Props) {
       return newRanges;
     });
   };
-  
 
   return (
     <Box sx={{ mt: 4 }}>

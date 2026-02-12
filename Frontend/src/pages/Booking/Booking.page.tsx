@@ -13,7 +13,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import bookingApi from "../../services/booking.api";
+import bookingDetailApi from "../../services/bookingDetail.api";
 
 import {
   type Category,
@@ -80,20 +80,20 @@ export default function BookingSummaryPage() {
     });
   };
 
-  const handleSubmit = async () => {
-    const payload = {
-      bookingDetails: selectedRanges.map((r) => ({
-        date: dayjs(r.start).format("YYYY-MM-DD"),
-        start: dayjs(r.start).format("HH:mm"),
-        end: dayjs(r.end).format("HH:mm"),
-        courtId: Number(id),
-        products: rangeProducts[getRangeKey(r)] || [],
-      })),
-    };
+const handleSubmit = async () => {
+const payload = selectedRanges.map((r) => ({
+  date: dayjs(r.start).format("YYYY-MM-DD"),
+  start: dayjs(r.start).format("HH:mm"),
+  end: dayjs(r.end).format("HH:mm"),
+  courtId: Number(id),
+  products: rangeProducts[getRangeKey(r)] || [],
+}));
 
-    await bookingApi.create(payload);
-    // navigate("/booking/success");
-  };
+console.log(payload);
+
+const res = await bookingDetailApi.create(payload);
+console.log(res);
+};
 
   return (
     <Box px={3} py={4} display={"flex"} flexDirection={"column"}>

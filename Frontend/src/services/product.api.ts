@@ -1,9 +1,9 @@
 import ApiClient from "./axios";
 
-class Court extends ApiClient {
+class Product extends ApiClient {
   constructor() {
-    super("/product");
+    super("/products");
   }
 }
 
-export default new Court();
+export default new Product();

@@ -10,6 +10,8 @@ export type User = {
   phone: string;
   lastName: string;
   firstName: string;
+  address: string;
+  password: string
 };
 
 export type TypeCourt = {
@@ -21,15 +23,25 @@ export type TypeCourt = {
 
 export type Court = {
   id: number;
+  typeCourtId: number
   name: string;
-  imageUrl?: string;
   description: string;
   type: TypeCourt;
-  // price:
+  images: Image[];
 };
+
+export type Image = {
+  id: number
+  courtId: number
+  name: string
+  createAt: string
+  url: string
+}
 
 export type Price = {
   id: number;
+  startTime: string
+  endTime: string
   isPeak: boolean;
   price: number;
 };
@@ -60,4 +72,9 @@ export type ProductDetail = {
 export type Category = {
   id: number
   name: string
+}
+
+export type Booking = {
+  id: number
+  
 }

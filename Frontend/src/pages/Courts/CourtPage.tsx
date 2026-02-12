@@ -16,38 +16,40 @@ import courtApi from "../../services/court.api";
 import type { Court } from "../../utils/types";
 
 export const DiscoverCourts = () => {
-  // const [courts, setCourts] = useState<Court[]>([])
-
-  //   useEffect(() => {
-  //     (async () => {
-  //       const data = await courtApi.getAll();
-  //       setCourts(data);
-  //     })();
-  //   }, []);
 
   const { data: courts = [], isLoading } = useQuery({
     queryKey: ["courts"],
     queryFn: () => courtApi.getAll(),
   });
 
+  console.log(courts);
+
   if (isLoading) return <div>Loading...</div>;
   return (
     <>
-      <Box maxWidth={1440} mx="auto" px={3} py={4} display="flex" gap={4}>
+      <Box
+        maxWidth={1440}
+        mx="auto"
+        px={1}
+        py={4}
+        display="flex"
+        gap={4}
+        alignItems="flex-start"
+      >
         {/* Sidebar */}
         <FilterSidebar />
 
         {/* Main content */}
         <Box flex={1}>
           <Typography variant="h4" fontWeight={700} mb={1}>
-            Discover Courts Near You
+            Danh sách sân hiện có
           </Typography>
           <Typography color="text.secondary" mb={4}>
             Có {courts.length} sân phù hợp
           </Typography>
 
           {/* Court Grid */}
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {courts.map((court) => (
               <Grid item xs={12} md={6} xl={4} key={court.id}>
                 <CourtCard court={court} />

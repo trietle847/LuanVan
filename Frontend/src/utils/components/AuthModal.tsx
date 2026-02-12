@@ -21,6 +21,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import GoogleIcon from "@mui/icons-material/Google";
 import authApi from "../../services/auth.api";
 import { useAuth } from "../../contexts/AuthContext";
+import userApi from "../../services/user.api";
 
 type AuthMode = "login" | "register";
 
@@ -55,7 +56,7 @@ const AuthModal = ({ open, onClose }: Props) => {
         await login(res.token); 
         onClose();
       } else {
-        await authApi.create({ username, email, password });
+        await userApi.create({ username, email, password });
         setMode("login");
       }
     } catch (err) {

@@ -7,14 +7,26 @@ import {
   Button,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import type { Court } from "../types";
+import { type Image, type Court, type Price } from "../types";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import priceConfigApi from "../../services/priceConfig.api";
 
 interface Props {
   court: Court;
 }
 
 const CourtCard = ({ court }: Props) => {
+  console.log(court);
+const [prices, setPrices] = useState<Price[]>([])
+
+const fetchData = async () => {
+  const res = await priceConfigApi.getById(court?.typeCourtId);
+  console.log(res);
+}
+useEffect(() => {
+  fetchData()
+}, [court])
   return (
     <Link to={`/court/${court.id}`}>
       <Card
@@ -28,7 +40,7 @@ const CourtCard = ({ court }: Props) => {
           },
         }}
       >
-        <CardMedia component="img" height={200} image={court.imageUrl} />
+        <CardMedia component="img" height={200} image={court.images[0]?.url} />
 
         <CardContent>
           <Box display="flex" justifyContent="space-between">
