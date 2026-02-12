@@ -1,6 +1,7 @@
 package com.CT553.demo.controller;
 
 import com.CT553.demo.dto.request.CourtRequest;
+import com.CT553.demo.dto.request.CourtUpdateRequest;
 import com.CT553.demo.dto.response.CourtResponse;
 import com.CT553.demo.dto.response.ProductResponse;
 import com.CT553.demo.service.CourtService;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +22,9 @@ public class CourtController {
     @Autowired
     private CourtService courtService;
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('MANAGER', 'ADMIN')")
-    public CourtResponse createCourt(@RequestBody CourtRequest request) {
+    public CourtResponse createCourt(@ModelAttribute  CourtRequest request) {
         return courtService.createCourt(request);
     }
 
@@ -42,8 +44,9 @@ public class CourtController {
         return courtService.getCourtById(id);
     }
 
-    @PutMapping("/{id}")
-    public CourtResponse updateCourt(@PathVariable Long id, @RequestBody CourtRequest request){
+    @PutMapping(value = "/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public CourtResponse updateCourt(@PathVariable Long id,  @ModelAttribute CourtUpdateRequest request){
         return courtService.updateCourt(id, request);
     }
 
