@@ -11,5 +11,6 @@ public class CourtResponse {
     private String description;
     private Long sportCenterId;
     private Long typeCourtId;
+    private String nameTypeCourt;
     private List<ImageResponse> images;
 }
